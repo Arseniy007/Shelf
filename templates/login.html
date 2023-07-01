@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}
+    <div class="entrance">
+        <h1>Welcome to the Shelf!</h1><br>
+        {% if error %}
+            <h3 id="error" style="display: none;">
+                {{ error }}
+            </h3>
+        {% elif success %}
+            <h3 id="success" style="display: none;">
+                {{ success }}
+            </h3>
+        {% endif %}
+        <form action="/login" method="post">
+            <div>
+                <input class="input field" autocomplete="off" autofocus name="username" placeholder="Username" type="text" required>
+            </div>
+            <div>
+                <input class="input field" autocomplete="off" autofocus name="password" placeholder="Password" type="password" required>
+            </div><br>
+            <button class="btn btn-success" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</button>
+        </form>
+    </div>  
+{% endblock %}

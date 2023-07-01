@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Wish list
+{% endblock %}
+
+{% block main %}
+    <div class="entrance">
+        {% if error %}
+            <h3 id="error" style="display: none;">
+                {{ error }}
+            </h3><br>
+            <button class="btn btn-success">
+                <a class="white_link" href="/wish_list">
+                    Try again
+                </a>
+            </button>
+        {% else %}
+            {% if number_of_books %}
+                {% if success %}
+                    <h3 id="success" style="display: none;">
+                        {{ success }}
+                    </h3><br>
+                {% endif %}
+                <div>
+                    <div>
+                        <div class="form">
+                            <i class="fa fa-search"></i>
+                            <input onkeyup="search_book()" id="search_box" class="form-control form-input" type="text" placeholder="Search for books...">
+                        </div>
+                    </div><br>
+                    <div>
+                        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#new_wish" aria-expanded="false" aria-controls="new_wish">
+                            <i class="fa fa-gift" aria-hidden="true"></i> Make a new wish <i class="fa fa-gift" aria-hidden="true"></i>
+                        </button>
+                        <div class="collapse" id="new_wish">
+                            <div class="card card-body" id="new_wish_body">
+                                <h1>New wish</h1><br>
+                                <form action="/wish_list" method="post" enctype="multipart/form-data">
+                                    <div class="block_container">
+                                        <div class="block_1">
+                                            <input class="input field" autocomplete="off" autofocus name="title" placeholder="Title" type="text" required>
+                                        </div>
+                                        <div class="block_2">
+                                            <input class="input field" autocomplete="off" autofocus name="author" placeholder="Author" type="text" required>
+                                        </div><br>
+                                    </div>
+                                    <div class="block_container">
+                                        <div class="block_1">
+                                            <input class="input field" autocomplete="off" autofocus name="link" placeholder="Link" type="text">
+                                        </div>
+                                        <div class="block_2">
+                                            <select class="form-select field" name="category">
+                                                <option value="" selected>Category</option>
+                                                {% for category in categories %}
+                                                    <option value="{{ category.name }}">{{ category.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div><br>
+                                    <div>
+                                        <h4>Book cover</h4>
+                                    </div>
+                                    <div>
+                                        <input class="form-control cover" autocomplete="off" autofocus name="cover" type="file" accept="image/*"/>
+                                    </div><br>
+                                    <button class="btn btn-success" type="submit" value="upload">
+                                        <i class="fa fa-plus-square" aria-hidden="true"></i> Add a book 
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="shelf">
+                        {% for book in books %}
+                            <div class="card book_card" style="width: 6cm;">
+                                <a href="/book/{{ book.title }}">
+                                    <img class="card-img-top book_cover" src="../static/upload_folder/{{ book.cover }}" alt="Book cover">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title"><b class="book_title">{{ book.title }}</b></h5>
+                                    <p class="card-text"><b class="book_author">{{ book.author }}</b></p>
+                                    {% if book.link %}
+                                        <button type="button" class="btn btn-secondary">
+                                            <a class="white_link" href="{{ book.link }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Buy</a>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            {% else %}
+                <div>
+                    <h1>New wish</h1><br>
+                    <form action="/wish_list" method="post" enctype="multipart/form-data">
+                        <div class="block_container">
+                            <div class="block_1">
+                                <input class="input field" autocomplete="off" autofocus name="title" placeholder="Title" type="text">
+                            </div>
+                            <div class="block_2">
+                                <input class="input field" autocomplete="off" autofocus name="author" placeholder="Author" type="text">
+                            </div><br>
+                        </div>
+                        <div class="block_container">
+                            <div class="block_1">
+                                <input class="input field" autocomplete="off" autofocus name="link" placeholder="Link" type="text">
+                            </div>
+                            <div class="block_2">
+                                <select class="form-select field" name="category">
+                                    <option value="Category" selected>Category</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.name }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div><br>
+                        <div>
+                            <h4>Book cover</h4>
+                        </div>
+                        <div>
+                            <input class="form-control cover" autocomplete="off" autofocus name="cover" type="file" accept="image/*"/>
+                        </div><br>
+                        <button class="btn btn-success" type="submit" value="upload">
+                            <i class="fa fa-plus-square" aria-hidden="true"></i> Add a book 
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ category }}
+{% endblock %}
+
+{% block main %}
+   <div class="entrance">
+        <h1>{{ category }}</h1><br>
+        <div>
+            <div class="form">
+                <i class="fa fa-search"></i>
+                <input onkeyup="search_book()" id="search_box" class="form-control form-input" type="text" placeholder="Search for books...">
+            </div>
+        </div><br><br><br>
+        <div class="shelf">
+            {% for book in books %}
+                <div class="card book_card" style="width: 6cm;">
+                    <a href="/book/{{ book.title }}">
+                        <img class="card-img-top book_cover" src="../static/upload_folder/{{ book.cover }}" alt="Book cover">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><b class="book_title">{{ book.title }}</b></h5>
+                        <p class="card-text"><b class="book_author">{{ book.author }}</b></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+   </div>
+{% endblock %}

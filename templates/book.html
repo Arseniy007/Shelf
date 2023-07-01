@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block main %}
+    <div class="entrance">
+        <h1>"{{ title }}"</h1>
+        <h2>By {{ book.author }}</h2><br>
+        {% if book.status == "wish_list" %}
+            <div>
+                <button type="button" class="btn btn-success">
+                    <a class="white_link" href="/buy/{{ title }}"><i class="fa fa-book" aria-hidden="true"></i> Bought it!</a>
+                </button>
+            </div><br>
+        {% endif %}
+        <div>
+            <img src="../static/upload_folder/{{ book.cover }}" alt="Book cover" class="book_page_cover">
+        </div><br><br>
+        {% if book.status == "library" %}
+            <div>
+                {% if location %}
+                    <h3>Location</h3>
+                        <ul class="list-group list_of_books_locations">
+                            <li class="list-group-item d-flex flex-fill justify-content-between align-items-center list-group-item-dark book_locations">
+                                <div class="show">
+                                    <a class="black_link" href="/{{ location }}/books">
+                                        {{ location }}
+                                    </a>
+                                </div>
+                                <div class="show">
+                                    <span class="badge bg-primary rounded-pill">{{ number_of_books_at_location }}</span>
+                                </div>
+                                <div class="hide" style="display: none;">
+                                    {% if number_of_locations %}
+                                        <a class="black_link" href="/select_location_for_{{ title }}">
+                                            Change location
+                                        </a>
+                                    {% else %}
+                                        <a class="black_link" href="/locations">
+                                            Change location
+                                        </a>
+                                    {% endif %}
+                                </div>
+                                <div class="hide" style="display: none;">
+                                    <i class="fa fa-arrows red_button" aria-hidden="true"></i>
+                                </div>
+                            </li>
+                        </ul>
+                {% else %}
+                    <h3>Location</h3>
+                    <ul class="list-group list_of_books_locations">
+                        <li class="list-group-item d-flex flex-fill justify-content-between align-items-center list-group-item-dark book_locations">
+                            <div>
+                                {% if number_of_locations %}
+                                    <a class="black_link" href="/select_location_for_{{ title }}">
+                                        Add location
+                                    </a>
+                                {% else %}
+                                    <a class="black_link" href="/locations">
+                                        Add location
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <i class="fa fa-plus-square" aria-hidden="true"></i> 
+                            </div>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div><br><br>
+        {% endif %}
+        <div>
+            <h3>Categories</h3>
+            <ul class="list-group list_of_books_categories">
+                {% for category in categories %}
+                    <li class="list-group-item d-flex flex-fill justify-content-between align-items-center list-group-item-dark book_categories">
+                        <a class="black_link" href="/books/{{ category.name }}">
+                            {{ category.name }}
+                        </a>
+                        <div class="show">
+                            <span class="badge bg-primary rounded-pill">{{ category.count }}</span>
+                        </div>
+                        <a class="hide" style="display: none;" href="/delete_{{ title }}/{{ category.name }}">
+                            <i class="fa fa-minus-circle red_button" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <form action="/book/{{ title }}" method="post">
+            <select class="form-select book_settings" name="category" required>
+                <option disabled value="" selected>Select a category</option>
+                {% for category in new_categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select><br>
+            <button class="btn btn-success" type="submit" value="upload">
+                <i class="fa fa-plus-square" aria-hidden="true"></i> Add
+            </button>
+        </form><br><br>
+        <div>
+            <button onclick="edit('show', 'hide'); return false;" class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#edit" aria-expanded="false" aria-controls="edit">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+            </button>
+            <div class="collapse" id="edit">
+                <div class="card card-body" id="edit_body">
+                    <button type="button" class="btn btn-danger black_link" data-toggle="modal" data-target="#delete_book">
+                        <i class="fa fa-trash" aria-hidden="true"></i> <b>Delete book</b>
+                    </button>
+                    <div class="modal fade" id="delete_book" tabindex="-1" role="dialog" aria-labelledby="delete_book" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Bye book!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <div class="modal-body">
+                                <b>Are you sure you want to delete this book?</b>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger">
+                                    <a class="black_link" href="/delete/{{ title }}"><b>Delete</b></a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

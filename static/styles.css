@@ -1,0 +1,242 @@
+body
+{
+    background-image: url("pictures/book_shelf_photo.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+.navigation
+{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border: solid transparent;
+    z-index: 9999;
+}
+
+.entrance
+{
+    background-color: rgba(228, 213, 140, 0.842);
+    margin: auto;
+    padding: 2em;
+    color:black;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 90px;
+}
+
+.field
+{
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+    background-color: rgba(211, 211, 212);
+}
+
+.cover
+{
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+    background-color: rgba(211, 211, 212);
+}
+
+.shelf
+{
+    flex-wrap: wrap;
+    display: flex;
+    gap: 60px;
+}
+
+.book_card
+{
+    background-color: rgba(228, 213, 140, 0.27);
+    border: none;
+}
+
+.book_cover
+{
+    height: 9cm;
+    width: 6cm;
+}
+
+.book_page_cover
+{
+    height: 12cm;
+    width: 8cm;
+}
+
+.all_books, .list_of_books_locations, .list_of_books_categories
+{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.book_locations, .book_categories
+{
+    width: 25%;
+    border-radius: 15px;
+    margin: 0.5px 0;
+    padding: 12px 20px;
+}
+
+.book_locations:first-child, .book_locations:last-child
+{
+    border-radius: 15px;
+    padding: 12px 20px;
+}
+
+.book_categories:first-child, .book_categories:last-child
+{
+    border-radius: 15px;
+    padding: 12px 20px;
+}
+
+.book_settings
+{
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px rgba(211, 211, 212);
+    border-radius: 15px;
+    background-color: rgba(211, 211, 212);
+}
+
+.block_container
+{
+    text-align: center;
+}
+
+.block_1, .block_2
+{
+    display: inline;
+}
+
+#new_wish_body, #edit_body
+{
+    position: relative;
+    background-color: inherit;
+    border: 10px solid transparent;
+}
+
+.form
+{
+    position: relative;
+
+}
+
+.form .fa-search
+{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ca3af;
+}
+
+.left-pan
+{
+    padding-left: 7px;
+}
+
+.left-pan i
+{
+   padding-left: 10px;
+}
+
+.form-input
+{
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+    background-color: rgba(211, 211, 212);
+}
+
+.form-input:focus
+{
+    box-shadow: none;
+    border: none;
+    background-color: rgba(211, 211, 212);
+}
+
+.black_link 
+{
+    text-decoration: none;
+    color: black;
+}
+
+.black_link:hover
+{
+    text-decoration: none;
+    color: black;
+}
+
+.white_link
+{
+    text-decoration: none;
+    color: white;
+}
+
+.white_link:hover
+{
+    text-decoration: none;
+    color: white;
+}
+
+.red_button
+{
+    color: red;
+}
+
+.senches_photo
+{
+    height: 14cm;
+    width: 10cm;
+    right: 100%;
+}
+
+.about1, .about2, .about3, .about4
+{
+    position: absolute;
+}
+
+.about1
+{
+    left: 70%;
+}
+
+.about2
+{
+    right: 70%
+}
+
+.about3
+{
+    right: 40%;
+    top: 98%;
+}
+
+.about4
+{
+    left: 70%;
+    top: 80%;
+}
+
+.about5
+{
+    top: -100px;
+    left: 80px;
+}

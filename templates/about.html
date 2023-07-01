@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block main %}
+    <div class="entrance">
+        <h1><b>Shelf</b></h1><br>
+        <div class="card bg-light mb-3 about1" style="max-width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-text">
+                    With "Shelf" you can gather all your books in one place and organize them by creating different locations and categories!
+                </h4>
+            </div>
+        </div>
+        <div class="card text-white bg-dark mb-3 about2" style="max-width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-text">
+                    "Shelf" is meant for people who want to have a digital version of their own library
+                </h4>
+            </div>
+        </div>
+        <img class="senches_photo" src="../static/pictures/my_photo.jpg" alt="Senches">
+        <div class="card text-white bg-secondary mb-3 about3" style="max-width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-text">
+                    Made by Arseniy Shapiro
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </h4>
+            </div>
+        </div>
+        <div class="card text-white bg-primary mb-3 about4" style="max-width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-text">
+                    "Shelf" is made using Flask, SQL and Java Script
+                </h4>
+            </div>
+        </div>
+        <div class="card text-white bg-info mb-3 about5" style="max-width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-text">
+                    "Shelf" is a final project for the "CS50's Introduction to Computer Science"
+                </h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <div class="entrance">
+        <h1>Create your own Shelf</h1><br>
+        {% if error %}
+            <h3 id="error" style="display: none;">
+                {{ error }}
+            </h3><br>
+        {% endif %}
+        <form name="register" action="/register" onsubmit="return check_new_password('register')" method="post">
+            <div>
+                <input class="input field" autocomplete="off" autofocus name="username" placeholder="Username" type="text" required>
+            </div>
+            <div>
+                <input class="input field" autocomplete="off" autofocus name="password" placeholder="Password" type="password" required>
+            </div>
+            <div>
+                <input class="input field" name="confirmation" placeholder="Confirm password" type="password" required>
+            </div><br>
+            <button class="btn btn-success" type="submit"><i class="fa fa-user" aria-hidden="true"></i> Register</button>
+        </form>
+    </div>
+{% endblock %}

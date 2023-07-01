@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}  
+    <div class="entrance">
+        {% if number_of_books_library %}
+            <h1><b>What's on my Shelf</b></h1><br><br>
+            <div>
+                <h3>Books</h3>
+                <ul class="list-group all_books">
+                    <li class="list-group-item d-flex flex-fill justify-content-between align-items-center list-group-item-dark book_locations">
+                        <a class="black_link" href="/library">
+                            <b>Library</b>
+                        </a>
+                        <span class="badge bg-primary rounded-pill">{{ number_of_books_library }}</span>
+                    </li>
+                    <li class="list-group-item d-flex flex-fill justify-content-between align-items-center list-group-item-dark book_locations">
+                        <a class="black_link" href="/wish_list">
+                            <b>Wish list</b>
+                        </a>
+                        <span class="badge bg-primary rounded-pill">{{ number_of_books_wish_list }}</span>
+                    </li>
+                </ul>
+            </div><br>
+        {% else %}
+            <button class="btn btn-success">
+                <a class="white_link" href="/add">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> Add your first book
+                </a>
+            </button><br><br>
+        {% endif %}
+        {% if number_of_locations %}
+            <div>
+                <h3>Locations</h3>
+                <ul class="list-group list_of_books_locations">
+                    {% for location in locations %}
+                        <li class="list-group-item d-flex flex-fill justify-content-between align-items-center list-group-item-dark book_locations">
+                            {% if location.count > 0 %}
+                                <a class="black_link" href="/{{ location.name }}/books">
+                                    <b>{{ location.name }}</b>
+                                </a>
+                            {% else %}
+                                <b>{{ location.name }}</b>
+                            {% endif %}
+                            <span class="badge bg-primary rounded-pill">{{ location.count }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div><br>
+        {% else %}
+            <button class="btn btn-success">
+                <a class="white_link" href="/locations">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> Add your first location
+                </a>
+            </button><br><br>
+        {% endif %}
+        {% if number_of_categories %}
+            <div>
+                <h3>Categories</h3>
+                <ul class="list-group list_of_books_categories">
+                    {% for category in categories %}
+                        <li class="list-group-item d-flex flex-fill justify-content-between align-items-center list-group-item-dark book_categories">
+                            {% if category.count > 0 %}
+                                <a class="black_link" href="/books/{{ category.name }}">
+                                    <b>{{ category.name }}</b>
+                                </a>
+                            {% else %}
+                                <b>{{ category.name }}</b>
+                            {% endif %}
+                            <span class="badge bg-primary rounded-pill">{{ category.count }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <button class="btn btn-success">
+                <a class="white_link" href="/categories">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> Add your first category
+                </a>
+            </button>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add a book
+{% endblock %}
+
+{% block main %}
+    <div class="entrance">
+        <h1>New book on the Shelf</h1><br>
+        {% if error %}
+            <h3 id="error" style="display: none;">
+                {{ error }}
+            </h3><br>
+            <button class="btn btn-success">
+                <a class="white_link" href="/add">
+                    Try again
+                </a>
+            </button>
+        {% else %}
+            {% if success %}
+                <h3 id="success" style="display: none;">
+                    {{ success }}
+                </h3><br>
+            {% endif %}
+            <form action="/add" method="post" enctype="multipart/form-data">
+                <div class="block_container">
+                    <div class="block_1">
+                        <input class="input field" autocomplete="off" autofocus name="title" placeholder="Title" type="text" required>
+                    </div>
+                    <div class="block_2">
+                        <input class="input field" autocomplete="off" autofocus name="author" placeholder="Author" type="text" required>
+                    </div>
+                </div>
+                <div class="block_container">
+                    <div class="block_1">
+                        <select class="form-select field" name="location">
+                            <option value="" selected>Location</option>
+                            {% for location in locations %}
+                                <option value="{{ location.name }}">{{ location.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="block_2">
+                        <select class="form-select field" name="category">
+                            <option value="" selected>Category</option>
+                            {% for category in categories %}
+                                <option value="{{ category.name }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div><br>
+                <div>
+                    <h4>Book cover</h4>
+                </div>
+                <div>
+                    <input class="form-control cover" autocomplete="off" autofocus name="cover" type="file" accept="image/*"/>                
+                </div><br>
+                <button class="btn btn-success" type="submit" value="upload">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> Add a book 
+                </button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

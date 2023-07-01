@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Locations
+{% endblock %}
+
+{% block main %}
+    <div class="entrance">
+        {% if number_of_locations %}
+            <h1>My locations</h1><br><br>
+            {% if error %}
+                <h3 id="error" style="display: none;">
+                    {{ error }}
+                </h3><br>
+            {% endif %}
+            <ul class="list-group list-group-horizontal list_of_books_locations">
+                {% for location in locations %}
+                    <li class="list-group-item d-flex flex-fill justify-content-between align-items-center list-group-item-dark book_locations">
+                        {% if location.count > 0 %}
+                            <a class="black_link" href="/{{ location.name }}/books">
+                                <b>{{ location.name }}</b>
+                            </a>
+                        {% else %}
+                            <b>{{ location.name }}</b>
+                        {% endif %}  
+                        <div class="count">
+                            <span class="badge bg-primary rounded-pill">{{ location.count }}</span>
+                        </div>
+                        <div class="delete" style="display: none;" data-toggle="modal" data-target="#{{ location.name }}">
+                            <i class="fa fa-trash red_button" aria-hidden="true"></i>
+                        </div>
+                        <div class="modal fade" id="{{ location.name }}" tabindex="-1" role="dialog" aria-labelledby="{{ location.name }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Bye location!</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <div class="modal-body">
+                                    <b>Are you sure you want to delete this location?</b>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger">
+                                        <a class="black_link" href="/delete_location/{{ location.name }}"><b>Delete</b></a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}                
+            </ul><br><br>
+            <div>
+                <h3>New</h3>
+                <form action="/locations" method="post">
+                    <div>
+                        <input class="input field" autocomplete="off" name="add_location" placeholder="New location" type="text" required>
+                    </div><br>
+                    <button class="btn btn-success" type="submit" value="upload">
+                        <i class="fa fa-plus-square" aria-hidden="true"></i> Add
+                    </button>
+                </form>
+            </div><br><br>
+            <button onclick="edit('count', 'delete'); return false;" class="btn btn-warning" type="button">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+            </button>
+        {% else %}
+            <div>
+                <h3>Add first location</h3><br>
+                <form action="/locations" method="post">
+                    <div>
+                        <input class="input field" autocomplete="off" autofocus name="add_location" placeholder="New location" type="text" required>
+                    </div><br>
+                    <button class="btn btn-success" type="submit" value="upload">
+                        <i class="fa fa-plus-square" aria-hidden="true"></i> Add
+                    </button>
+                </form>
+            </div><br>
+        {% endif %}
+    </div>
+{% endblock %}
