@@ -7,7 +7,7 @@ It is meant for people who want to have a digital version of their own library. 
 
 #### Technical details:
 
-- **"app.py"** is the file, where all the main backend logic is described (*Flask*).
+- **"app.py"** is a file, where all the main backend logic is described (*Flask*).
 
 - **"helpers.py"** is a secondary python file with auxiliary functions. Almost all of them consist of SQL queries. There are put there in order to keep the Flask-file as clean of SQL as possible.
 
