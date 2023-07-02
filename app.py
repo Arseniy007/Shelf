@@ -236,7 +236,7 @@ def wish_list():
             return render_template("wish_list.html", error=message)
         
         else:
-            # Show succes message
+            # Show success message
             message = "The book is added to your wish list"
 
             # Handle category
