@@ -1,5 +1,5 @@
 # Shelf
-#### https://youtu.be/sn6cG6evO10
+#### 
 #### Description:
 "Shelf" is a final project for the "CS50's Introduction to Computer Science" course, which was made using Flask, SQL, JavaScript and of course some bit of HTML and CSS.
 
